@@ -52,19 +52,18 @@
         -->	
 
             <div class="row" >
-			    <div class="col-md-8">
-					<h1><strong> Monitoring of Formal Site in Iraq</strong></h1>
+			    <div class="col-md-9">
+					<h1><strong> Iraq - Monitoring of Formal Sites</strong></h1>
 					<p><small>If you need more information / documents about IDPs in Iraq, please visit the <a href="http://iraq.cccmcluster.org/" target="_blank">CCCM - Iraq website.</a></small></p>
-					<p><small><i>Source: Formal Site Monitoring Tool (FSMT), January 2017</i></small></p> 
-                    
+					<p><small><i>Source: Formal Site Monitoring Tool (FSMT), January 2017</i></small></p>                     
                 </div>
-			    <div class="col-md-4">
-					<a href="http://iraq.cccmcluster.org/" target="_blank"><img src="images/cccmlogo.png" style="width: 100%"></a>                   
+			    <div class="col-md-3">
+					<a href="http://iraq.cccmcluster.org/" target="_blank"><img src="images/cccmlogo.png"></a>                   
                 </div>
             </div>
             <div class="row" id="cccm">
                 <div class="col-md-2">
-                    <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">How-To</a>                     
+                    <a class="btn btn btn-success" href="javascript:void(0);" onclick="javascript:introJs().start();">How to use?</a>                     
                 </div>
                 <div class="col-md-8"  data-step="1" data-intro="This displays the number of sites you filtered. Use the reset button to delete all your filters" data-position="right">
                     <div id="count-info"  class="col-md-8">
@@ -82,7 +81,7 @@
 			    <div class="col-md-2">
                     <h4> Profile</h4>
                       <p><small><i> Age & Gender</i></small></p></span>
-						 <img src="images/noun_4244.svg" alt="WASH" height="30px" width="30px"><span id="totalind" class="number-display"></span> Individuals <br ><br >
+						 <img src="images/noun_4244.svg" alt="WASH" height="30px" width="30px"><strong><span id="totalind" class="number-display"></span> Individuals</strong> <br ><br >
                          <img src="images/family.svg" alt="WASH" height="30px" width="30px"><span id="totalhou" class="number-display"></span> Household,<br ><br >
 						 <img src="images/noun_5.svg" alt="WASH" height="30px" width="30px"><span id="totalwom" class="number-display"></span> Women<br ><br >
 						 <img src="images/man.svg" alt="WASH" height="30px" width="30px"><span id="totalmen" class="number-display"></span> Men<br ><br >
@@ -236,6 +235,9 @@ function drawMarkerArea(data) {
        .valueAccessor(function(d){return +d})
         .group(byGirlGroup);
 
+   var colorScale = d3.scale.ordinal()
+            .domain(["0.No",    "1.Low",   "2.Medium", "3.High",  "4.Very High"])
+            .range([ "#f6eff7", "#bdc9e1", "#67a9cf",  "#1c9099", "#016c59"]);		
 
   var facilities = xf.dimension(function(d) { return d.geo; });
   var facilitiesGroup = facilities.group().reduceCount();
@@ -246,7 +248,7 @@ function drawMarkerArea(data) {
       .height(280)
 	  /// note that map size also need to changed in the css
       .center([34.7503,44.5385])
-      .zoom(6)
+      .zoom(5)
       .cluster(true)
       .filterByArea(true)
     //  .featureKeyAccessor(function(feature) {return feature.properties.geo; })
@@ -278,13 +280,8 @@ function drawMarkerArea(data) {
         .height(140)
         .renderLabel(true)
         .renderTitle(true)
-        .colors(['#0865A6', /* Very High */
-                        '#56A2DC', /* High*/
-                        '#88BEE7', /* Medium */
-                        '#BBDAF1', /* Low */
-                        '#2a87cf' /* no */
-                        ])
-         .colorDomain([0,5]);
+        .colors(colorScale)
+        .colorDomain(colorScale);
     //   .ordering(function (p) { return -p.value; });
 
   var waterqs = xf.dimension(function(d) { return d.shelter; });
@@ -296,13 +293,8 @@ function drawMarkerArea(data) {
         .height(140)
         .renderLabel(true)
         .renderTitle(true)
-         .colors(['#0865A6', /* Very High */
-                        '#56A2DC', /* High*/
-                        '#88BEE7', /* Medium */
-                        '#BBDAF1', /* Low */
-                        '#2a87cf' /* no */
-                        ])
-         .colorDomain([0,5]);
+        .colors(colorScale)
+        .colorDomain(colorScale);
     //   .ordering(function (p) { return -p.value; });
 
   var waterqs = xf.dimension(function(d) { return d.nfi; });
@@ -314,13 +306,8 @@ function drawMarkerArea(data) {
         .height(140)
         .renderLabel(true)
         .renderTitle(true)
-         .colors(['#0865A6', /* Very High */
-                        '#56A2DC', /* High*/
-                        '#88BEE7', /* Medium */
-                        '#BBDAF1', /* Low */
-                        '#2a87cf' /* no */
-                        ])
-         .colorDomain([0,5]);
+        .colors(colorScale)
+        .colorDomain(colorScale);
     //   .ordering(function (p) { return -p.value; });
 
 
@@ -333,13 +320,8 @@ function drawMarkerArea(data) {
         .height(140)
         .renderLabel(true)
         .renderTitle(true)
-         .colors(['#0865A6', /* Very High */
-                        '#56A2DC', /* High*/
-                        '#88BEE7', /* Medium */
-                        '#BBDAF1', /* Low */
-                        '#2a87cf' /* no */
-                        ])
-         .colorDomain([0,5]);
+        .colors(colorScale)
+        .colorDomain(colorScale);
      //  .ordering(function (p) { return -p.value; });
 
 
@@ -352,13 +334,8 @@ function drawMarkerArea(data) {
         .height(140)
         .renderLabel(true)
         .renderTitle(true)
-         .colors(['#0865A6', /* Very High */
-                        '#56A2DC', /* High*/
-                        '#88BEE7', /* Medium */
-                        '#BBDAF1', /* Low */
-                        '#2a87cf' /* no */
-                        ])
-         .colorDomain([0,5]);
+        .colors(colorScale)
+        .colorDomain(colorScale);
      //   .ordering(function (p) { return -p.value; });
 
   var damages = xf.dimension(function(d) { return d.food; });
@@ -370,13 +347,8 @@ function drawMarkerArea(data) {
         .height(140)
         .renderLabel(true)
         .renderTitle(true)
-         .colors(['#0865A6', /* Very High */
-                        '#56A2DC', /* High*/
-                        '#88BEE7', /* Medium */
-                        '#BBDAF1', /* Low */
-                        '#2a87cf' /* no */
-                        ])
-         .colorDomain([0,5]);
+        .colors(colorScale)
+        .colorDomain(colorScale);
      //   .ordering(function (p) { return -p.value; });
 
   var hazardss = xf.dimension(function(d) { return d.protection; });
@@ -388,13 +360,8 @@ function drawMarkerArea(data) {
         .height(140)
         .renderLabel(true)
         .renderTitle(true)
-         .colors(['#0865A6', /* Very High */
-                        '#56A2DC', /* High*/
-                        '#88BEE7', /* Medium */
-                        '#BBDAF1', /* Low */
-                        '#2a87cf' /* no */
-                        ])
-         .colorDomain([0,5]);
+        .colors(colorScale)
+        .colorDomain(colorScale);
     //    .ordering(function (p) { return -p.value; });
 
   var miness = xf.dimension(function(d) { return d.education; });
@@ -406,20 +373,9 @@ function drawMarkerArea(data) {
         .height(140)
         .renderLabel(true)
         .renderTitle(true)
-         .colors(['#0865A6', /* Very High */
-                        '#56A2DC', /* High*/
-                        '#88BEE7', /* Medium */
-                        '#BBDAF1', /* Low */
-                        '#2a87cf' /* no */
-                        ])
-         .colorDomain([0,5]);
+        .colors(colorScale)
+        .colorDomain(colorScale);
     //    .ordering(function (p) { return -p.value; });
-
-
-	
-
-
-
 
 
 $('#reset').on('click', function (){
